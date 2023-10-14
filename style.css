@@ -1,6 +1,42 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
+
+.logo {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(0, 0, 0);
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  padding: 15px;
+  font-size: larger;
+}
+
+.top-image {
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(images/tables.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    padding: 20vh 0;
+    
+}
+
+.top-image h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.top-image a {
+    margin-top: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+
