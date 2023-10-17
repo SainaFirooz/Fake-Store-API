@@ -21,9 +21,9 @@ const displayProducts = (products) => {
     productInfo.classList.add('product-info');
     productInfo.innerHTML = `
       <h2>${product.title}</h2>
-      <p>Price: $${product.price}</p>
-      <p>Category: ${product.category}</p>
-      <p>Rating: ${product.rating.rate} (based on ${product.rating.count} reviews)</p>
+      <p><b>Price: $</b>${product.price}</p>
+      <p><b>Category:</b> ${product.category}</p>
+      <p><b>Rating: </b>${product.rating.rate} (${product.rating.count} reviews)</p>
       <button onclick="addToCart('${product.title}', '$${product.price}', '${product.image}')">Add to Cart</button>
     `;
 
@@ -35,19 +35,15 @@ const displayProducts = (products) => {
 
 
 
-
-
 const fetchProducts = async () => {
   try {
     const response = await fetch(PRODUCTS_URL);
     if (!response.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('error');
     }
     const products = await response.json();
     return products;
   } catch (error) {
-    console.error('Error fetching products:', error);
-    return [];
   }
 };
 
@@ -58,52 +54,7 @@ const loadProducts = async () => {
     const products = await fetchProducts();
     displayProducts(products);
   } catch (error) {
-    console.error('Error loading products:', error);
   }
 };
 
 loadProducts();
-
-
-  
-// modal
-
-function openModal(title, description, price, category, ratingRate) {
-  const modalContent = document.getElementById('modalContent');
-  modalContent.innerHTML = `
-    <h2>${title}</h2>
-    <p>Description: ${description}</p>
-    <p>Price: ${price}</p>
-    <p>Category: ${category}</p>
-    <p>Rating: ${ratingRate}</p>
-    <div class="button-container">
-  <button onclick="closeModal()" class="modal-button">Close</button>
-  <button onclick="addToCart('${title}', '${price}')" class="modal-button">Add to Cart</button>
-</div>
-  `;
-
-  const modal = document.getElementById('myModal');
-  modal.style.display = 'block';
-
-  document.removeEventListener('click', outsideModalClick);
-  document.addEventListener('click', outsideModalClick);
-}
-
-function closeModal() {
-  const modal = document.getElementById('myModal');
-  modal.style.display = 'none';
-
-  const modalContent = document.getElementById('modalContent');
-  modalContent.innerHTML = ''; 
-
-  document.removeEventListener('click', outsideModalClick);
-}
-
-
-function outsideModalClick(event) {
-  if (event.target === productContainer) {
-    closeModal();
-  }
-}
-
-
