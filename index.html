@@ -6,31 +6,78 @@
     <title>FakeStore API</title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="style.css">
-    <script defer src="javascript.js"></script>
+    <script src="cart.js"></script>
+    <script src="script.js"></script>
+    <script src="categories.js"></script>
   </head>
   <body>
-    <header class="header-grid">
-        <a class="logo" href="#">
-            <img class="logo-image" src="images/H&M.png" alt="H&M logo"></a>
+    <header>
+        <a class="logo" href="index.html">Fake Store</a>
 
-        <ul class="navbar">
-                <li><a href="">Dam</a></li>
-                <li><a href="">Herr</a></li>
-                <li><a href="">Barn</a></li>
-                <li><a href="">Baby</a></li>
-                <li><a href="">Sport</a></li>
-                <li><a href="">Rea</a></li>
-                
-            </ul>
+       <div>
+        <select id="categoryDropdown" onchange="categoryChanged()">
+          <option value="" disabled selected>Select a category</option>
+        </select>
+      </div>
+      
+      <div id="itemsContainer" class="items-container"></div>
+
+
         </header>
     <main>
+    
+
         <div class="top-image">
-            <h1>Rea</h1>
-            <a href="book.html" class="hero-btn">Shoppa nu</a>
+            <h1>Fake Store</h1>
+            <a href="index.html" class="hero-btn">New releases</a>
+        </div>
+
+        
+
+        <div id="productContainer" class="product-container">
+            <div class="product-card" onclick="openModal()">
+                <img src="" alt="" class="product-image" />
+                <div class="product-info">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()"></span>
+              <div id="modalContent"></div>
+            </div>
+          </div>
+
+
+          
+
+        
+          <div class="container">
+          <div class="shopping-cart-left">
+            <div class="shopping-cart" id="shoppingCart">
+              <span class="close-icon" onclick="toggleCart()">
+              </span>
+              <div class="head"><p>My Cart</p></div>
+              <div class="cart-items" id="cartItems">
+              </div>
+              <div class="foot">
+                <!-- <h3>Total</h3> -->
+                <div class="cart-icon-container">
+                  <i class='bx bx-cart bx-tada cart-icon'></i>
+                </div>
+                <!-- <h2 id="total">$ 0.00</h2> -->
+                
+            </div>
+            </div>
+          </div>
         </div>
 
 
     </main>
+
+ 
 
     <footer>
         <section>
@@ -42,9 +89,11 @@
                 <a href="#"><i class='bx bxl-twitter'></i></a>
                 <a href="#"><i class='bx bxl-youtube'></i></a>
             </div>
-                
         </section>
-        
     </footer>
+
+    
+   
+   
   </body>
 </html>
