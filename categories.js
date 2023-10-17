@@ -1,5 +1,7 @@
+const CATEGORY_URL = 'https://fakestoreapi.com/products/categories';
+
 async function fetchCategories() {
-  const response = await fetch('https://fakestoreapi.com/products/categories');
+  const response = await fetch(CATEGORY_URL);
   const categories = await response.json();
 
   const categoryDropdown = document.getElementById('categoryDropdown');
@@ -19,7 +21,7 @@ async function categoryChanged() {
   const categoryDropdown = document.getElementById('categoryDropdown');
   const selectedCategory = categoryDropdown.value;
 
-  // Clear the previous content in productContainer
+
   const productContainer = document.getElementById('productContainer');
   productContainer.innerHTML = '';
 
@@ -32,11 +34,12 @@ async function categoryChanged() {
       const productCard = document.createElement('div');
       productCard.classList.add('product-card');
       productCard.innerHTML = `
-        <img src="${product.image}" alt="${product.title}" class="product-image" />
+      <img src="${product.image}" alt="${product.title}" class="product-image" onclick="openModal('${product.title}', '${product.description}', '${product.price}', '${product.category}', '${product.rating.rate}', '${product.image}')">
         <div class="product-info">
           <h2>${product.title}</h2>
-          <p>$${product.price}</p>
-          <button onclick="addToCart('${product.title}', ${product.price}, '${product.image}')">Add to Cart</button>
+          <p><b>Price: $</b>${product.price}</p>
+          <p><b>Rating: $</b>${product.rating.rate} (${product.rating.count} reviews)</p>
+          <button onclick="addToCart('${product.title}', '$${product.price}', '${product.image}')">Add to Cart</button>
         </div>
       `;
       productContainer.appendChild(productCard);

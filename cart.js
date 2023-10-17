@@ -11,17 +11,17 @@ const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 function addToCart(title, price, image) {
   const item = new CartItem(title, price, image);
   cartItems.push(item);
-  updateCartDisplay();
-  saveCartItemsToLocalStorage();
+  updateCart();
+  saveLocalStorage();
 }
 
 function removeFromCart(index) {
   cartItems.splice(index, 1);
-  updateCartDisplay();
-  saveCartItemsToLocalStorage();
+  updateCart();
+  saveLocalStorage();
 }
 
-function updateCartDisplay() {
+function updateCart() {
   const cartItemsContainer = document.getElementById('cartItems');
   cartItemsContainer.innerHTML = cartItems
     .map((item, index) => `
@@ -30,13 +30,13 @@ function updateCartDisplay() {
         <div class="cart-item-info">
           <p>${item.title}</p>
           <p>${item.price}</p>
-          <button onclick="removeFromCart(${index})">Remove</button>
+          <button onclick="removeFromCart(${index})"><i class='bx bx-trash'></i></button>
         </div>
       </div>
     `)
     .join('');
 }
 
-function saveCartItemsToLocalStorage() {
+function saveLocalStorage() {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
 }
